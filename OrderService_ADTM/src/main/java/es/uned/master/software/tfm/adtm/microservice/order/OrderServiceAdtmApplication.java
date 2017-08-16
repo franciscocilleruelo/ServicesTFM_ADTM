@@ -1,4 +1,4 @@
-package es.uned.master.software.tfm.adtm.service.order;
+package es.uned.master.software.tfm.adtm.microservice.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package es.uned.master.software.tfm.adtm.service.order.service;
+package es.uned.master.software.tfm.adtm.microservice.order.service;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.uned.master.software.tfm.adtm.service.order.jpa.entity.Order;
-import es.uned.master.software.tfm.adtm.service.order.jpa.repository.OrderRepository;
+import es.uned.master.software.tfm.adtm.microservice.order.jpa.entity.Order;
+import es.uned.master.software.tfm.adtm.microservice.order.jpa.repository.OrderRepository;
 
 @Service
 @Transactional

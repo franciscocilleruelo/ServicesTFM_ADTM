@@ -1,4 +1,4 @@
-package es.uned.master.software.tfm.adtm.service.order.jpa.entity;
+package es.uned.master.software.tfm.adtm.microservice.order.jpa.entity;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package es.uned.master.software.tfm.adtm.service.customer;
+package es.uned.master.software.tfm.adtm.microservice.customer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

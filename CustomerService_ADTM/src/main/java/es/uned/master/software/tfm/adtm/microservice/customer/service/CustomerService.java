@@ -1,4 +1,4 @@
-package es.uned.master.software.tfm.adtm.service.customer.service;
+package es.uned.master.software.tfm.adtm.microservice.customer.service;
 
 import java.util.List;
 
@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.uned.master.software.tfm.adtm.service.customer.jpa.entity.Customer;
-import es.uned.master.software.tfm.adtm.service.customer.jpa.entity.Order;
-import es.uned.master.software.tfm.adtm.service.customer.jpa.entity.ReservedCredit;
-import es.uned.master.software.tfm.adtm.service.customer.jpa.entity.ReservedCreditId;
-import es.uned.master.software.tfm.adtm.service.customer.jpa.repository.CustomerRepository;
-import es.uned.master.software.tfm.adtm.service.customer.jpa.repository.ReservedCreditRepository;
+import es.uned.master.software.tfm.adtm.microservice.customer.jpa.entity.Customer;
+import es.uned.master.software.tfm.adtm.microservice.customer.jpa.entity.Order;
+import es.uned.master.software.tfm.adtm.microservice.customer.jpa.entity.ReservedCredit;
+import es.uned.master.software.tfm.adtm.microservice.customer.jpa.entity.ReservedCreditId;
+import es.uned.master.software.tfm.adtm.microservice.customer.jpa.repository.CustomerRepository;
+import es.uned.master.software.tfm.adtm.microservice.customer.jpa.repository.ReservedCreditRepository;
 
 
 @Service

@@ -1,4 +1,4 @@
-package es.uned.master.software.tfm.adtm.service.customer.jpa.entity;
+package es.uned.master.software.tfm.adtm.microservice.customer.jpa.entity;
 
 import java.io.Serializable;
 

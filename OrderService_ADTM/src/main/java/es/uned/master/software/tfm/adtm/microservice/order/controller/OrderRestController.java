@@ -1,4 +1,4 @@
-package es.uned.master.software.tfm.adtm.service.order.controller;
+package es.uned.master.software.tfm.adtm.microservice.order.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.uned.master.software.tfm.adtm.service.order.jpa.entity.Order;
-import es.uned.master.software.tfm.adtm.service.order.service.OrderService;
+import es.uned.master.software.tfm.adtm.microservice.order.jpa.entity.Order;
+import es.uned.master.software.tfm.adtm.microservice.order.service.OrderService;
 
 @RestController
 public class OrderRestController {
