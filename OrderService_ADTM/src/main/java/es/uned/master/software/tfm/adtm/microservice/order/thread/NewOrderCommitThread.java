@@ -1,13 +1,17 @@
 package es.uned.master.software.tfm.adtm.microservice.order.thread;
 
+import java.io.Serializable;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import es.uned.master.software.tfm.adtm.microservice.order.jpa.entity.Order;
 import es.uned.master.software.tfm.adtm.microservice.order.service.OrderService;
 
-public class NewOrderCommitThread implements Runnable {
-	
+public class NewOrderCommitThread implements Runnable, Serializable {
+
+	private static final long serialVersionUID = 615905841730273367L;
+
 	private static final Logger log = LoggerFactory.getLogger(NewOrderCommitThread.class);
 	
 	private Order order;

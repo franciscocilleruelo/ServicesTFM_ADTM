@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import es.uned.master.software.tfm.adtm.manager.TransactionManager;
+import es.uned.master.software.tfm.adtm.manager.DistributedTransactionManager;
 import es.uned.master.software.tfm.adtm.microservice.customer.consumer.OrderConsumer;
 
 @SpringBootApplication
@@ -23,8 +23,8 @@ public class CustomerServiceAdtmApplication {
 	private OrderConsumer orderConsumer;
 	
 	@Bean
-	public TransactionManager buildTransactionManager(){
-		TransactionManager transactionManager = new TransactionManager();
+	public DistributedTransactionManager buildTransactionManager(){
+		DistributedTransactionManager transactionManager = new DistributedTransactionManager();
 		transactionManager.recieveTransaction(customersQueueName, orderConsumer);
 		return transactionManager;
 	}

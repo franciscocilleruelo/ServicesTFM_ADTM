@@ -1,5 +1,6 @@
 package es.uned.master.software.tfm.adtm.microservice.order.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.uned.master.software.tfm.adtm.entity.Transaction;
 import es.uned.master.software.tfm.adtm.entity.TransactionExecutor;
-import es.uned.master.software.tfm.adtm.manager.TransactionManager;
+import es.uned.master.software.tfm.adtm.manager.DistributedTransactionManager;
 import es.uned.master.software.tfm.adtm.microservice.order.jpa.entity.Order;
 import es.uned.master.software.tfm.adtm.microservice.order.jpa.repository.OrderRepository;
 import es.uned.master.software.tfm.adtm.microservice.order.thread.NewOrderCommitThread;
@@ -19,15 +20,17 @@ import es.uned.master.software.tfm.adtm.microservice.order.thread.NewOrderRollba
 
 @Service
 @Transactional
-public class OrderService {
-	
+public class OrderService implements Serializable{
+
+	private static final long serialVersionUID = -8757659633801168330L;
+
 	private static final Logger log = LoggerFactory.getLogger(OrderService.class);
 	
 	@Autowired
 	private OrderRepository orderRepository;
 	
 	@Autowired
-	private TransactionManager transactionManager;
+	private DistributedTransactionManager transactionManager;
 	
 	@Value("${queue.orders.name}")
 	private String ordersQueueName;
@@ -36,8 +39,8 @@ public class OrderService {
 	private String customersQueueName;
 	
 	public void insertExampleData(){
-		orderRepository.save(new Order(new Long(1), "OPEN", 25));
-		orderRepository.save(new Order(new Long(2), "OPEN", 250));
+		orderRepository.save(new Order("OPEN", 25));
+		orderRepository.save(new Order("OPEN", 250));
 		log.info("Inicializado repositorio de pedidos con datos de ejemplo");
 	}
 	
