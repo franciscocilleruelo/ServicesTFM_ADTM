@@ -11,12 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.uned.master.software.tfm.adtm.entity.Transaction;
-import es.uned.master.software.tfm.adtm.entity.TransactionExecutor;
 import es.uned.master.software.tfm.adtm.manager.DistributedTransactionManager;
+import es.uned.master.software.tfm.adtm.microservice.order.consumer.OrderConsumer;
 import es.uned.master.software.tfm.adtm.microservice.order.jpa.entity.Order;
 import es.uned.master.software.tfm.adtm.microservice.order.jpa.repository.OrderRepository;
-import es.uned.master.software.tfm.adtm.microservice.order.thread.NewOrderCommitThread;
-import es.uned.master.software.tfm.adtm.microservice.order.thread.NewOrderRollbackThread;
 
 @Service
 @Transactional
@@ -32,17 +30,14 @@ public class OrderService implements Serializable{
 	@Autowired
 	private DistributedTransactionManager transactionManager;
 	
+	@Autowired
+	private OrderConsumer orderConsumer;
+	
 	@Value("${queue.orders.name}")
 	private String ordersQueueName;
 	
 	@Value("${queue.customers.name}")
 	private String customersQueueName;
-	
-	public void insertExampleData(){
-		orderRepository.save(new Order("OPEN", 25));
-		orderRepository.save(new Order("OPEN", 250));
-		log.info("Inicializado repositorio de pedidos con datos de ejemplo");
-	}
 	
 	public List<Order> findAll(){
 		log.info("Busqueda de todos los pedidos");
@@ -55,10 +50,7 @@ public class OrderService implements Serializable{
 		log.info("Se guarda el nuevo pedido");
 		orderRepository.save(order);
 		log.info("Se envia el pedido a la cola {} para ser procesado por el servicio de clientes", ordersQueueName);
-		NewOrderCommitThread threadCommit = new NewOrderCommitThread(order, this);
-		NewOrderRollbackThread threadRollback = new NewOrderRollbackThread(order, this);
-		TransactionExecutor<NewOrderCommitThread, NewOrderRollbackThread> executor = new TransactionExecutor<NewOrderCommitThread, NewOrderRollbackThread>(threadCommit, threadRollback);
-		Transaction<Order> transaction = new Transaction(order, executor, ordersQueueName, customersQueueName, 0);
+		Transaction<Order> transaction = new Transaction<Order>(order, orderConsumer, ordersQueueName, customersQueueName, 0);
 		transactionManager.sendTransaction(transaction);
 		return order;
 	}
