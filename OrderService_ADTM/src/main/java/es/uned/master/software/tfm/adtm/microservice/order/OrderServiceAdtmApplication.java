@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-import es.AdtmModule;
+import es.ADTM;
 
 @SpringBootApplication
-@Import(AdtmModule.class)
+@Import(ADTM.class)
 public class OrderServiceAdtmApplication {
 
 	public static void main(String[] args) {

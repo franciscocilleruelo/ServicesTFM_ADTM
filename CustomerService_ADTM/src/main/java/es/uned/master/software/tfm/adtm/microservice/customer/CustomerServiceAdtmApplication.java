@@ -10,13 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
-import es.AdtmModule;
+import es.ADTM;
 import es.uned.master.software.tfm.adtm.manager.DistributedTransactionManager;
 import es.uned.master.software.tfm.adtm.microservice.customer.consumer.OrderConsumer;
 import es.uned.master.software.tfm.adtm.microservice.customer.service.CustomerService;
 
 @SpringBootApplication
-@Import(AdtmModule.class)
+@Import(ADTM.class)
 public class CustomerServiceAdtmApplication {
 	
 	private static final Logger log = LoggerFactory.getLogger(CustomerServiceAdtmApplication.class);
