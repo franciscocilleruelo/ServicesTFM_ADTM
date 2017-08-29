@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
 
 import es.ADTM;
 import es.uned.master.software.tfm.adtm.manager.DistributedTransactionManager;
-import es.uned.master.software.tfm.adtm.microservice.customer.consumer.OrderConsumer;
+import es.uned.master.software.tfm.adtm.microservice.customer.consumer.CustomerConsumer;
 import es.uned.master.software.tfm.adtm.microservice.customer.service.CustomerService;
 
 @SpringBootApplication
@@ -37,11 +37,11 @@ public class CustomerServiceAdtmApplication {
 	private String ordersQueueName;
 
 	@Autowired
-	private OrderConsumer orderConsumer;
+	private CustomerConsumer customerConsumer;
 	
 	@Bean
 	public DistributedTransactionManager buildTransactionManager(DistributedTransactionManager transactionManager){
-		transactionManager.recieveTransaction(ordersQueueName, orderConsumer);
+		transactionManager.recieveTransaction(ordersQueueName, customerConsumer);
 		return transactionManager;
 	}
 }

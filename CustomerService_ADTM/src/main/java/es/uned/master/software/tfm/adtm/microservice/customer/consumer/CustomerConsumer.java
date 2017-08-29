@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -18,11 +17,11 @@ import es.uned.master.software.tfm.adtm.microservice.customer.jpa.repository.Cus
 import es.uned.master.software.tfm.adtm.microservice.customer.jpa.repository.ReservedCreditRepository;
 
 @Component
-public class OrderConsumer extends ReceiverConsumer<Order> implements Serializable{
+public class CustomerConsumer extends ReceiverConsumer<Order> implements Serializable{
 
 	private static final long serialVersionUID = 1729892484009760697L;
 
-	private static final Logger log = LoggerFactory.getLogger(OrderConsumer.class);
+	private static final Logger log = LoggerFactory.getLogger(CustomerConsumer.class);
 	
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -30,9 +29,8 @@ public class OrderConsumer extends ReceiverConsumer<Order> implements Serializab
 	@Autowired
 	private ReservedCreditRepository reservedCreditRepository;
 
-	@Autowired
-	public OrderConsumer(RabbitTemplate rabbitTemplate) {
-		super(rabbitTemplate, Order.class);
+	public CustomerConsumer() {
+		super(Order.class);
 	}
 
 	@Override
