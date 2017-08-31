@@ -41,7 +41,7 @@ public class CustomerServiceAdtmApplication {
 	
 	@Bean
 	public DistributedTransactionManager buildTransactionManager(DistributedTransactionManager transactionManager){
-		transactionManager.recieveTransaction(ordersQueueName, customerConsumer);
+		transactionManager.receiveTransaction(ordersQueueName, customerConsumer);
 		return transactionManager;
 	}
 }
